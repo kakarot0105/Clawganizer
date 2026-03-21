@@ -1,0 +1,11 @@
+{
+  "name": "clawganizer",
+  "description": "OpenClaw Project Organizer - Manage and organize your workspace",
+  "version": "1.0.0",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📁",
+      "requires": {}
+    }
+  }
+}
