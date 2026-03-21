@@ -132,7 +132,7 @@ MIT License - see [LICENSE](LICENSE) file
 
 ## 👤 Author
 
-**Nikhil Narahari**
+**Kakarot0105**
 
 ## 🙏 Acknowledgments
 
