@@ -263,7 +263,6 @@
     running = false;
     cancelAnimationFrame(raf);
     canvas.style.transform = "";
-    // fade handled by caller; keep last calm frame briefly
     if (resolveDone) {
       const done = resolveDone;
       resolveDone = null;
@@ -279,16 +278,21 @@
         spawnStorm();
         start = 0;
         running = true;
+        canvas.style.opacity = "1";
         canvas.classList.add("is-active");
         raf = requestAnimationFrame(frame);
       });
     },
-    stop() {
+    async stop() {
       running = false;
       cancelAnimationFrame(raf);
-      canvas.classList.remove("is-active");
-      ctx.clearRect(0, 0, width, height);
       canvas.style.transform = "";
+      canvas.style.transition = "opacity 0.55s ease";
+      canvas.style.opacity = "0";
+      await new Promise((r) => setTimeout(r, 560));
+      canvas.classList.remove("is-active");
+      canvas.style.transition = "";
+      ctx.clearRect(0, 0, width, height);
     },
     duration: DURATION,
   };

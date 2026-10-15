@@ -124,8 +124,8 @@
     }
 
     stopLines(error ? "Storm aborted" : "Sky clearing…");
-    await sleep(500);
-    window.ClawTornado.stop();
+    await sleep(400);
+    await window.ClawTornado.stop();
     showTakeover(false);
     document.body.classList.remove("is-storming");
     document.body.classList.add("is-done");
