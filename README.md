@@ -24,9 +24,20 @@ clawganizer run
 # Actually organize your computer
 clawganizer run --apply
 
+# Tornado UI — press Run
+clawganizer ui
+
 # Undo the last applied run
 clawganizer undo
 ```
+
+## UI
+
+```bash
+clawganizer ui
+```
+
+Opens a local page with a big **Run** button. Pressing it plays a full-screen tornado takeover, then organizes Downloads/Desktop (same engine as the CLI).
 
 ## What `run` does
 

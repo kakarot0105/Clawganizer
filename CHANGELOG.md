@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-10-15
+
+### Added
+- Local tornado UI: `clawganizer ui`
+- Full-viewport storm animation on **Run**, then organize via `/api/run`
+- Undo from the UI results panel
+
 ## [2.0.0] - 2026-10-15
 
 ### Added

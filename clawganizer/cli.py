@@ -119,6 +119,13 @@ def cmd_status(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ui(args: argparse.Namespace) -> int:
+    from .ui import serve_ui
+
+    serve_ui(host=args.host, port=args.port, open_browser=not args.no_browser)
+    return 0
+
+
 def cmd_workspace(args: argparse.Namespace) -> int:
     action = args.workspace_command
     if action == "organize":
@@ -208,6 +215,16 @@ def build_parser() -> argparse.ArgumentParser:
     show = sub.add_parser("config", help="Print effective configuration")
     show.add_argument("--config", help="Path to a config JSON file")
     show.set_defaults(func=cmd_show_config)
+
+    ui = sub.add_parser("ui", help="Open the tornado Run UI in your browser")
+    ui.add_argument("--host", default="127.0.0.1", help="Bind address (default 127.0.0.1)")
+    ui.add_argument("--port", type=int, default=8765, help="Port (default 8765)")
+    ui.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="Do not auto-open a browser tab",
+    )
+    ui.set_defaults(func=cmd_ui)
 
     wsp = sub.add_parser("workspace", help="OpenClaw project workspace helpers")
     wsp_sub = wsp.add_subparsers(dest="workspace_command", required=True)

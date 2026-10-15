@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "clawganizer"
-version = "2.0.0"
-description = "Organize your whole computer with one command"
+version = "2.1.0"
+description = "Organize your whole computer — CLI or tornado UI"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.9"
@@ -40,4 +40,4 @@ where = ["."]
 include = ["clawganizer*"]
 
 [tool.setuptools.package-data]
-clawganizer = ["default_config.json"]
+clawganizer = ["default_config.json", "ui/static/*"]

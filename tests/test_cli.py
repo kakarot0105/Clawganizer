@@ -13,7 +13,7 @@ def test_version(capsys):
     with pytest.raises(SystemExit) as exc:
         main(["--version"])
     assert exc.value.code == 0
-    assert "2.0.0" in capsys.readouterr().out
+    assert "2.1.0" in capsys.readouterr().out
 
 
 def test_run_dry_run_empty_targets(tmp_path: Path, monkeypatch, capsys):

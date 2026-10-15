@@ -1,5 +1,14 @@
 # Usage Guide
 
+## Tornado UI
+
+```bash
+clawganizer ui
+# optional: clawganizer ui --port 8765 --no-browser
+```
+
+Opens http://127.0.0.1:8765/ with a **Run** button. Press Run for a full-screen tornado animation; when it clears, your computer is organized (same as `clawganizer run --apply`).
+
 ## Organize your computer
 
 ### Preview (default)
