@@ -36,20 +36,20 @@
     debris = [];
     flashes = [];
 
-    const count = Math.floor(Math.min(900, width * height * 0.00035));
+    const count = Math.floor(Math.min(1400, width * height * 0.00055));
     for (let i = 0; i < count; i++) {
       particles.push({
         a: Math.random() * Math.PI * 2,
-        r: 20 + Math.random() * Math.max(width, height) * 0.55,
+        r: 20 + Math.random() * Math.max(width, height) * 0.62,
         y: Math.random() * height,
-        speed: 1.8 + Math.random() * 3.4,
-        rise: 0.6 + Math.random() * 2.2,
-        size: 1 + Math.random() * 2.4,
-        shade: 180 + Math.random() * 60,
+        speed: 2.2 + Math.random() * 4.2,
+        rise: 0.8 + Math.random() * 2.8,
+        size: 1.2 + Math.random() * 3.2,
+        shade: 170 + Math.random() * 70,
       });
     }
 
-    const debrisCount = Math.floor(40 + Math.min(70, width / 18));
+    const debrisCount = Math.floor(55 + Math.min(90, width / 14));
     for (let i = 0; i < debrisCount; i++) {
       debris.push({
         x: Math.random() * width,
@@ -75,9 +75,9 @@
 
   function drawBackground(t, intensity) {
     const g = ctx.createLinearGradient(0, 0, 0, height);
-    g.addColorStop(0, `rgba(42, 58, 78, ${0.55 * intensity})`);
-    g.addColorStop(0.45, `rgba(70, 92, 118, ${0.35 * intensity})`);
-    g.addColorStop(1, `rgba(232, 186, 120, ${0.22 * intensity})`);
+    g.addColorStop(0, `rgba(32, 46, 64, ${0.72 * intensity})`);
+    g.addColorStop(0.45, `rgba(58, 78, 104, ${0.55 * intensity})`);
+    g.addColorStop(1, `rgba(210, 160, 90, ${0.38 * intensity})`);
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, width, height);
 

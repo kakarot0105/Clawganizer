@@ -70,6 +70,14 @@ body {
   padding: clamp(1.5rem, 4vw, 3.5rem);
   padding-bottom: clamp(2.5rem, 8vh, 5rem);
   max-width: 42rem;
+  transition: min-height 0.55s cubic-bezier(0.22, 1, 0.36, 1), padding-bottom 0.4s ease;
+}
+
+body.is-done .hero {
+  min-height: auto;
+  padding-bottom: 1.25rem;
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 8vh, 4rem);
 }
 
 .brand {

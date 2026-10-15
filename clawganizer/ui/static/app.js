@@ -143,6 +143,7 @@
           : "Nothing to sweep — your Downloads and Desktop were already calm.";
     }
 
+    results.scrollIntoView({ behavior: "smooth", block: "nearest" });
     await refreshStatus();
     busy = false;
     runBtn.disabled = false;
