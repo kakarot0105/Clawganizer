@@ -2,66 +2,101 @@
 
 ## Requirements
 
-- OpenClaw (any version)
-- Bash shell
-- ~2MB disk space
+- Python 3.9+
+- macOS or Linux (Windows via WSL is fine)
+- Write access to your home directory
 
-## Installation Methods
+## Global install (recommended)
 
-### Method 1: Copy to Skills Directory (Recommended)
+### From GitHub
 
 ```bash
-# Clone or download the repository
+pip install --user git+https://github.com/kakarot0105/Clawganizer.git
+```
+
+Ensure your user scripts directory is on `PATH` (often `~/.local/bin`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+# add that line to ~/.bashrc or ~/.zshrc for persistence
+```
+
+Verify:
+
+```bash
+clawganizer --version
+clawganizer status
+```
+
+### From a clone
+
+```bash
 git clone https://github.com/kakarot0105/Clawganizer.git
-
-# Copy to OpenClaw skills
-cp -r Clawganizer ~/.openclaw/skills/clawganizer
-
-# Verify installation
-ls ~/.openclaw/skills/clawganizer
+cd Clawganizer
+pip install --user .
 ```
 
-### Method 2: From GitHub
+### Editable (development)
 
 ```bash
-# Navigate to skills directory
-cd ~/.openclaw/skills
-
-# Clone directly
-git clone https://github.com/kakarot0105/Clawganizer.git clawganizer
-
-# Done!
+pip install -e ".[dev]"
+pytest
 ```
 
-### Method 3: Manual Download
-
-1. Download ZIP from GitHub
-2. Extract to `~/.openclaw/skills/clawganizer/`
-3. Make run.sh executable: `chmod +x ~/.openclaw/skills/clawganizer/run.sh`
-
-## Verify Installation
+## First run
 
 ```bash
-# Test the skill
-bash ~/.openclaw/skills/clawganizer/run.sh "status"
+# Always starts as a dry-run preview
+clawganizer run
 
-# Expected output: Workspace Status
+# When the plan looks right:
+clawganizer run --apply
+```
+
+Optional: write a config file before applying:
+
+```bash
+clawganizer init
+```
+
+## OpenClaw skill (optional)
+
+If you also use OpenClaw / Telegram skills:
+
+```bash
+mkdir -p ~/.openclaw/skills
+cp -r . ~/.openclaw/skills/clawganizer/
+# or: git clone … into ~/.openclaw/skills/clawganizer
+```
+
+The skill’s `src/run.sh` forwards to the `clawganizer` CLI when installed, and falls back to a small bash helper otherwise.
+
+```bash
+bash ~/.openclaw/skills/clawganizer/src/run.sh "status"
 ```
 
 ## Troubleshooting
 
-### "Command not found"
-- Verify OpenClaw is installed: `which openclaw`
-- Check skills directory exists: `ls ~/.openclaw/skills`
+### `clawganizer: command not found`
 
-### "Permission denied"
-- Make run.sh executable: `chmod +x ~/.openclaw/skills/clawganizer/run.sh`
+- Confirm install: `python3 -m pip show clawganizer`
+- Put scripts on PATH: `python3 -m site --user-base` → add `bin` under that path
+- Or run via module: `python3 -m clawganizer run`
 
-### "Workspace not found"
-- Run: `/clawganizer "organize"` to create structure
+### Permission denied moving files
 
-## Next Steps
+- Do not run as root
+- Check ownership of the source file and destination folder
+- Use `clawganizer run` (dry-run) to inspect the plan first
 
-- Read [USAGE.md](USAGE.md) for command reference
-- Check [CONFIG.md](CONFIG.md) for customization
+### Want to reverse a run
 
+```bash
+clawganizer undo --dry-run
+clawganizer undo
+```
+
+## Next steps
+
+- [USAGE.md](USAGE.md) — command reference
+- [CONFIG.md](CONFIG.md) — customize targets and categories

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clawganizer"
+version = "2.0.0"
+description = "Organize your whole computer with one command"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Kakarot0105" }]
+keywords = ["organize", "files", "downloads", "desktop", "cli", "productivity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+clawganizer = "clawganizer.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/kakarot0105/Clawganizer"
+Repository = "https://github.com/kakarot0105/Clawganizer"
+Issues = "https://github.com/kakarot0105/Clawganizer/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["clawganizer*"]
+
+[tool.setuptools.package-data]
+clawganizer = ["default_config.json"]

@@ -1,36 +1,80 @@
 # Configuration
 
-## Environment Variables
-
-Override default settings with environment variables:
+## Config file
 
 ```bash
-# Custom workspace location
+clawganizer init
+# writes ~/.config/clawganizer/config.json
+```
+
+Override the config directory with `CLAWGANIZER_CONFIG_DIR`.
+Override log directory with `CLAWGANIZER_LOG_DIR`.
+
+## Targets
+
+```json
+"targets": {
+  "Downloads": true,
+  "Desktop": true,
+  "Documents": false,
+  "Pictures": false
+}
+```
+
+Only enabled targets that exist under `$HOME` are scanned.
+
+## Destination root
+
+```json
+"destination_root": "~"
+```
+
+Category folders are created under this root (default: your home directory).
+
+## Extension maps
+
+```json
+"folders": {
+  "Images": ["jpg", "png", "gif", "..."],
+  "Videos": ["mp4", "mov", "..."]
+}
+```
+
+Unknown extensions go to `Organized/Other`.
+
+## Screenshots
+
+```json
+"screenshot_patterns": ["Screenshot*", "Screen Shot*", "CleanShot*", "Capture*"]
+```
+
+Matching filenames go to `Pictures/Screenshots` regardless of extension category.
+
+## Destination layout
+
+| Category | Destination |
+|----------|-------------|
+| Images | `~/Pictures/Organized` |
+| Screenshots | `~/Pictures/Screenshots` |
+| Videos | `~/Videos/Organized` |
+| Audio | `~/Music/Organized` |
+| Documents | `~/Documents/Organized` |
+| Code | `~/Documents/Code` |
+| Archives | `~/Archives` |
+| Installers | `~/Installers` |
+| Fonts | `~/Fonts` |
+| Ebooks | `~/Documents/Ebooks` |
+| Other | `~/Organized/Other` |
+
+## OpenClaw workspace env
+
+```bash
 export WORKSPACE=/custom/path
-/clawganizer "status"
-
-# Example: Use project-specific workspace
-export WORKSPACE=$HOME/myproject/.openclaw
-/clawganizer "organize"
+clawganizer workspace status
 ```
 
-## Default Locations
-
-| Location | Purpose |
-|----------|---------|
-| `~/.openclaw/projects/active/` | Active projects |
-| `~/.openclaw/projects/archived/` | Archived projects |
-| `~/.openclaw/venvs/` | Virtual environments |
-| `~/.openclaw/workspace/` | Workspace files |
-
-## Customization
-
-To customize Clawganizer, modify `src/run.sh`:
+## Inspect effective config
 
 ```bash
-# Edit the skill
-nano ~/.openclaw/skills/clawganizer/src/run.sh
-
-# Modify folder names, behaviors, etc.
+clawganizer config
 ```
-

@@ -1,7 +1,7 @@
 {
   "name": "clawganizer",
-  "description": "OpenClaw Project Organizer - Manage and organize your workspace",
-  "version": "1.0.0",
+  "description": "Organize your whole computer (Downloads, Desktop, …) and manage OpenClaw project workspaces",
+  "version": "2.0.0",
   "metadata": {
     "openclaw": {
       "emoji": "📁",
