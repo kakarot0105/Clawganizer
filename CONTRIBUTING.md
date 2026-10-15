@@ -14,18 +14,18 @@ Thank you for your interest in contributing!
 
 ### Submit Code
 1. Fork the repository
-2. Create feature branch: `git checkout -b feature/my-feature`
-3. Make changes with clear commit messages
-4. Test your changes
-5. Push to your fork
-6. Open a Pull Request
+2. `pip install -e ".[dev]"`
+3. Create feature branch: `git checkout -b feature/my-feature`
+4. Make changes with clear commit messages
+5. Run `pytest`
+6. Push to your fork and open a Pull Request
 
 ## Code Standards
 
 - Clear, descriptive commit messages
 - One feature per Pull Request
 - Document your changes
-- Test before submitting
+- Keep `clawganizer run` dry-run by default
 
 ## License
 

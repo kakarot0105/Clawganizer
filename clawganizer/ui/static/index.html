@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clawganizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="hero" id="hero">
+    <p class="brand">Clawganizer</p>
+    <h1 class="headline">One press. Whole computer. Sorted.</h1>
+    <p class="lede">Hit Run and a tornado sweeps loose files from Downloads and Desktop into clean homes.</p>
+    <div class="cta">
+      <button type="button" class="run" id="runBtn" aria-label="Run Clawganizer">
+        <span class="run__label">Run</span>
+        <span class="run__hint" id="pendingHint">Checking…</span>
+      </button>
+    </div>
+  </main>
+
+  <section class="results" id="results" hidden>
+    <h2 class="results__title" id="resultsTitle">Organized</h2>
+    <p class="results__summary" id="resultsSummary"></p>
+    <ul class="results__cats" id="resultsCats"></ul>
+    <div class="results__actions">
+      <button type="button" class="ghost" id="againBtn">Run again</button>
+      <button type="button" class="ghost" id="undoBtn">Undo last run</button>
+    </div>
+  </section>
+
+  <canvas id="tornado" class="tornado" aria-hidden="true"></canvas>
+  <div class="takeover" id="takeover" aria-live="polite" aria-atomic="true">
+    <p class="takeover__line" id="takeoverLine"></p>
+  </div>
+
+  <script src="/tornado.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,147 +1,123 @@
 # Clawganizer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-blue.svg)](https://github.com/openclaw/openclaw)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
-An intelligent OpenClaw skill for managing and organizing your development workspace.
+Organize your **whole computer** with one command.
 
-## 📋 Features
+Install once, then run `clawganizer` (or `clawganizer run --apply`) to sort loose files from Downloads, Desktop, and other clutter folders into clear homes: Pictures, Documents, Videos, Archives, and more.
 
-- ✅ **Create Projects** - Generate new project folders with proper structure
-- ✅ **List Projects** - View all active and archived projects
-- ✅ **Archive Projects** - Move old projects to archive
-- ✅ **Auto-Organize** - Generate workspace folder hierarchy
-- ✅ **Status Tracking** - Monitor workspace statistics
-- ✅ **Documentation** - Auto-generate workspace docs
-
-## 🚀 Quick Start
-
-### Installation
-
-#### Option 1: Copy to OpenClaw Skills
-```bash
-mkdir -p ~/.openclaw/skills
-cp -r . ~/.openclaw/skills/clawganizer/
-```
-
-#### Option 2: From GitHub
-```bash
-git clone https://github.com/kakarot0105/Clawganizer.git
-cp -r Clawganizer ~/.openclaw/skills/clawganizer/
-```
-
-### Usage
-
-In OpenClaw/Telegram:
+## Quick start
 
 ```bash
-# List all projects
-/clawganizer "list projects"
+# Install globally (pip)
+pip install git+https://github.com/kakarot0105/Clawganizer.git
 
-# Create new project
-/clawganizer "create project MyApp"
+# Or from a local clone
+pip install .
 
-# Check workspace status
-/clawganizer "status"
+# Preview what would move (safe default)
+clawganizer
+# same as:
+clawganizer run
 
-# Archive old project
-/clawganizer "archive OldProject"
+# Actually organize your computer
+clawganizer run --apply
 
-# Auto-organize workspace
-/clawganizer "organize"
+# Tornado UI — press Run
+clawganizer ui
 
-# Generate documentation
-/clawganizer "docs"
+# Undo the last applied run
+clawganizer undo
 ```
 
-## 📁 Workspace Structure
+## UI
 
-After running `organize`, your workspace looks like:
-
-```
-~/.openclaw/
-├── projects/
-│   ├── active/
-│   │   ├── Project1/
-│   │   └── Project2/
-│   └── archived/
-│       └── OldProject/
-├── venvs/
-├── workspace/
-│   ├── memory/
-│   ├── skills/
-│   └── notes/
-└── .openclaw.yaml
+```bash
+clawganizer ui
 ```
 
-## 📖 Documentation
+Opens a local page with a big **Run** button. Pressing it plays a full-screen tornado takeover, then organizes Downloads/Desktop (same engine as the CLI).
 
-- [Installation Guide](docs/INSTALLATION.md)
-- [Usage Guide](docs/USAGE.md)
+## What `run` does
+
+By default Clawganizer scans **top-level files** in:
+
+| Folder | Default |
+|--------|---------|
+| `~/Downloads` | on |
+| `~/Desktop` | on |
+| `~/Documents` | off |
+| `~/Pictures` | off |
+
+It sorts by type (and screenshot name patterns), for example:
+
+- Images → `~/Pictures/Organized`
+- Screenshots → `~/Pictures/Screenshots`
+- PDFs / Office → `~/Documents/Organized`
+- Videos → `~/Videos/Organized`
+- Audio → `~/Music/Organized`
+- Archives → `~/Archives`
+- Installers → `~/Installers`
+- Code snippets → `~/Documents/Code`
+- Everything else → `~/Organized/Other`
+
+Nested folders (projects, app bundles, etc.) are left alone. Moves are logged so you can `clawganizer undo`.
+
+## Commands
+
+```bash
+clawganizer                 # dry-run organize (whole computer)
+clawganizer run             # dry-run
+clawganizer run --apply     # move files
+clawganizer run --targets Downloads Desktop
+clawganizer run --path ~/Downloads --apply
+clawganizer status          # pending clutter summary
+clawganizer init            # write ~/.config/clawganizer/config.json
+clawganizer config          # print effective config
+clawganizer undo            # restore last applied run
+clawganizer undo --dry-run
+```
+
+### Optional OpenClaw workspace helpers
+
+```bash
+clawganizer workspace organize
+clawganizer workspace create my-app
+clawganizer workspace list
+clawganizer workspace archive my-app
+clawganizer workspace status
+```
+
+OpenClaw skill install (Telegram `/clawganizer`) is still documented in [docs/INSTALLATION.md](docs/INSTALLATION.md).
+
+## Configuration
+
+```bash
+clawganizer init
+$EDITOR ~/.config/clawganizer/config.json
+```
+
+Toggle targets, extension → folder maps, and screenshot patterns. See [docs/CONFIG.md](docs/CONFIG.md).
+
+## Documentation
+
+- [Installation](docs/INSTALLATION.md)
+- [Usage](docs/USAGE.md)
 - [Configuration](docs/CONFIG.md)
 - [Contributing](CONTRIBUTING.md)
 
-## 🛠️ Commands Reference
+## Development
 
-### Create Project
 ```bash
-/clawganizer "create project {name} {optional-description}"
+pip install -e ".[dev]"
+pytest
 ```
 
-### List Projects
-```bash
-/clawganizer "list projects"
-/clawganizer "list all"
-```
+## License
 
-### Archive
-```bash
-/clawganizer "archive {project_name}"
-```
+MIT — see [LICENSE](LICENSE).
 
-### Organize
-```bash
-/clawganizer "organize"
-```
-
-### Status
-```bash
-/clawganizer "status"
-```
-
-### Generate Docs
-```bash
-/clawganizer "docs"
-```
-
-## 🤝 Contributing
-
-Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
-
-### Development
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-MIT License - see [LICENSE](LICENSE) file
-
-## 👤 Author
+## Author
 
 **Kakarot0105**
-
-## 🙏 Acknowledgments
-
-- Built for [OpenClaw](https://github.com/openclaw/openclaw)
-- Inspired by modern DevOps tooling
-
----
-
-**Status:** Production Ready ✅  
-**Latest Version:** 1.0.0  
-**Last Updated:** 2026-03-20
-
